@@ -1,0 +1,46 @@
+1. What are the supported data types in Python?
+In Python exists the followind data types:
+- Numeric types, that includes:
+  + int
+  + float
+  + complex numbers
+- Sequence types, that includes:
+  + String
+  + List
+  + Tuples
+- Dictionary
+- Set
+- Boolean
+
+2. What is the difference between tuples and lists in Python?
+There are several differences like:
+- Tuples are faster than lists.
+- Lists have several built-in functions while tuples do not have.
+- Lists are mutable (can add or remove elements), in the other hand Tuples are inmutable (can't be edited).
+- Lists consume more memory compared to tuples.
+
+3. What are Python decorators?
+A decorator allows a function to change it's behaviour, this is achieved by extending it's functionality without explicity modifiying the function.
+
+4. What are generators in Python?
+A generator is a specialized code snippet capable of produce a set of values to control the iteration process. For example the range(n) python function.
+
+5. What are shallow and deep copy operations?
+A shallow copy consists on assign the same reference of an object to another variable.
+A deep copy generates a new reference in memory to store the same elements of i.e., a list.
+Doing a shallow copy like the following example:
+list1 = [1,2,3]
+list2 = list1
+list2[0] = 4
+
+The change done in the second list will be visible in both lists.
+
+6. Explain Dependency Injection?
+This is a technique where an object receives other objects that it depends on. This simplifies to extend the existing code and it's maintenance.
+For example, in Python we can pass objects or functions as parameters. 
+This technique helps on manage the complexity of the code and provides an easier way to extend the application.
+
+7. Explain how you can make a Python Script executable on Unix?
+For explicity Unix based systems, in the Python scripts, the first line should be:
+#!/usr/bin/env python3
+This specifies the OS to search for the Python interpreter in the whole PATH.
