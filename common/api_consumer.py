@@ -2,7 +2,7 @@
 
 import requests
 from requests.exceptions import HTTPError
-from typing import Dict, Optional
+from typing import Dict
 
 from .constants import BASE_EXTERNAL_API_URL as api_url
 
