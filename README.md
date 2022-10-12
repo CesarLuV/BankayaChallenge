@@ -64,3 +64,24 @@ Execute the following command:
 
 As is the default port, you should be able to see the running project on: 
 ```http://127.0.0.1:8000```
+
+
+# Running the tests
+In the terminal, move to the directory where *BankayaChallenge* is, at the same level of `main.py`.
+
+## Testing the client
+Run the following command:
+```
+python3 -m pytest ./test/*.py
+```
+
+# Verify the PEP8 Standar for Python files
+Located where *BankayaChallenge* project folder is, you can run the following comands:
+```
+pycodestyle --first common/utils.py
+pycodestyle --show-source --show-pep8 main.py
+```
+
+The above commands will indicate wich possible PEP8 coding standard metrics should be modified for the maximum readability of the souece code.
+
+**NOTE**: That lines of the code are just examples and should be aplied for all files.
