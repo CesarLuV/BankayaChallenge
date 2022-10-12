@@ -1,35 +1,45 @@
 '''Logic for processing KANTO pokemon information.'''
+
 from typing import Dict
 from common import utils as u
 from common.api_consumer import consume_api
 from models.models import Location
-from common.constants import KANTO
+from common.constants import BASE_EXTERNAL_API_URL, KANTO
 
 
 class KantoServices:
     def __init__(self, locations_in: Location) -> None:
         
-        locations_api = self.__consume_api_kanto_locations()
+        locations_api = consume_api(uri=BASE_EXTERNAL_API_URL.format(path=KANTO))
         
         if locations_api.get('error'):
             raise Exception(locations_api.get('error'))
-        
-        locations_api = u.get_names_all_locations(locations_api.get("locations"))
 
         locations_normalized = u.get_list_unique_elements(
             u.normalize_list_string_elements(locations_in.locations))
         
         valid_invalid_locs = u.get_valid_invalid_locations(
-            locations_normalized, locations_api)
+            locations_normalized, locations_api["locations"])
+        
         self.__valid_locations = valid_invalid_locs['valid_locations']
         self.__invalid_locations = valid_invalid_locs['invalid_locations']
 
-
-    def __consume_api_kanto_locations(self) -> Dict:
-        result = consume_api(path=KANTO)
-        if result.get("error"):
-            return {"result": result}
-        return {"locations": result["locations"]}
+        for elem in self.__valid_locations:
+            res = consume_api(uri=elem["url"])
+            if res.get('error'):
+                continue
+            elem['areas'] = res['areas']
+            del elem['url']
+            for item in elem['areas']:
+                res = consume_api(uri=item["url"])
+                if res.get('error'):
+                    continue
+                del item['url']
+                tmp = res['pokemon_encounters']
+                poke_names = list()
+                for obj in tmp:
+                    poke_names.append(obj['pokemon']['name'])
+                item['pokes'] = poke_names
 
 
     def __str__(self) -> str:

@@ -1,5 +1,6 @@
 '''Script for utilities tools.'''
 
+from operator import le
 from typing import List, Dict
 
 
@@ -18,19 +19,22 @@ def normalize_list_string_elements(elements_list: List[str],
     return normalized_list
 
 
-def get_names_all_locations(locations: List[object]) -> List[str]:
-    location_names = [elem['name'] for elem in locations]
-    return location_names
-
-
 def get_valid_invalid_locations(locations_to_validate: List[str], 
-                            location_names: List[str]) -> Dict:
+                        locations_list_dict: Dict) -> Dict:
+
     valid_locations = list()
     invalid_locations = list()
-    for location in locations_to_validate:
-        if location in location_names:
-            valid_locations.append(location)
-            continue
-        invalid_locations.append(location)
+
+    for elem in locations_list_dict:
+        if elem["name"] in locations_to_validate:
+            valid_locations.append(elem)
+            locations_to_validate.pop(locations_to_validate.index(elem["name"]))
+            if len(locations_to_validate) == 0:
+                break
+    invalid_locations = locations_to_validate
     res = {"valid_locations": valid_locations, "invalid_locations": invalid_locations}
     return res
+
+
+def get_pokemon_area():
+    pass

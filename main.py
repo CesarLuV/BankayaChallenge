@@ -18,5 +18,5 @@ def get_pokemon_in_location(locations: Location):
     try:
         obj = ks(locations)
     except Exception as e:
-        return {"Error": e}
+        return {"Error": e.args}
     return {"result": obj.get_response()}
