@@ -4,6 +4,9 @@ A coding challenge to Python SWE Positon
 # Answer to questions about Python
 You can find the answer of the questions in technical_answers.txt file.
 
+# Project Structure Diagrams
+To get the third extra bonus point. The file is named `BankayaDiagramCLV.pptx`.
+
 # Clone the Project
 
 In the folder where you want to work, open a terminal and write the following command:
