@@ -52,3 +52,35 @@ def test_pokemon_in_location_invalid_location():
     assert len(json_response.get("invalid_locations")) == 1
     assert len(json_response.get("valid_locations")) == 0
     assert json_response.get("most_diverse_pokemon") == ''
+
+
+def test_pokemon_in_location_wrong_missing_slash():
+    response = client.post(
+                            "/pokemon-in-location",
+                            json={"locations": ["pallet-town"]}
+                            )
+    assert response.status_code == 307
+
+
+def test_pokemon_in_location_wrong_url():
+    response = client.post(
+                            "/pokemon-in-/",
+                            json={"locations": ["pallet-town"]}
+                            )
+    assert response.status_code == 404
+
+
+def test_pokemon_in_location_missing_parameters():
+    response = client.post(
+                            "/pokemon-in-location/",
+                            json={}
+                            )
+    assert response.status_code == 422
+
+
+def test_pokemon_in_location_http_method_not_allowed():
+    response = client.get(
+                            "/pokemon-in-location/",
+                            json={}
+                            )
+    assert response.status_code == 405
