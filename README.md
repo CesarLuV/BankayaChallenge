@@ -29,6 +29,10 @@ For Python in macOS, use *pyenv*:
 
 ```brew install pyenv```
 
+To properly manage your python versions with pyenv, you need to install **xz** first with homebrew:
+
+```brew install xz```
+
 To install a specific Python version, move to the *BankayaChallenge* folder and run:
 
 ```pyenv install 3.10.5```
